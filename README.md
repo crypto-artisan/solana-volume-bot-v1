@@ -1,116 +1,71 @@
-# How can I boost the volume of spl token in Raydium?
 # Raydium Volume Bot
 
-This volume bot distribute SOL to multiple wallets and buy and sell with that distributed wallets permanently on the Raydium platform.
-
-## Contact Info
-
-Telegram: @JohnDAT0218
-
-You can always feel free to find me here for my help on other projects.
+A powerful bot that boosts SPL token volume on Raydium by distributing SOL to multiple wallets and executing automated buy/sell operations.
 
 ## Features
 
-- **Automated Wallet Creation**: Create number of wallets automatically to buy and sell the token
-- **Automated SOL Distribution**: Distributes SOL to those new wallets.
-- **Endless Buy and Sell Swaps**: Buy and Sell with those wallets permanently.
-- **Configurable Parameters**: Allows customization of buy amounts, intervals, distribution settings, and more.
-<!--
-- **Massive Buy Mode**: Enables the configuration of multiple wallets for large-scale buy operations.
-- **Sell Mode**: Gradually sells all tokens in sub-wallets through small transactions.
-- **Token Pair Settings**: Configurable token mint and pool ID for swap operations.
--->
-<!--
-## Environment Variables
+| Feature | Description |
+|---------|-------------|
+| **Automated Wallet Creation** | Creates multiple wallets automatically for trading operations |
+| **Automated SOL Distribution** | Distributes SOL efficiently to all generated wallets |
+| **Endless Buy/Sell Operations** | Conducts continuous trading to boost volume metrics |
+| **Configurable Parameters** | Customize buy amounts, intervals, distribution settings, and more |
 
-The bot uses the following environment variables, which should be defined in a `.env` file:
+## Quick Start
 
-```env
-PRIVATE_KEY=                 # Private key for the main wallet
-RPC_ENDPOINT=                # RPC endpoint for Solana
-RPC_WEBSOCKET_ENDPOINT=      # RPC WebSocket endpoint for Solana
+| Step | Command/Action |
+|------|----------------|
+| 1. Clone repository | `git clone https://github.com/crypto-artisan/solana-volume-bot-v1.git` |
+| | `cd solana-volume-bot-v1` |
+| 2. Install dependencies | `npm install` |
+| 3. Configure settings | Rename `.env.copy` to `.env` and set your parameters |
+| 4. Start the bot | `npm run start` |
 
-####### BUY SETTING #######
-IS_RANDOM=true               # Enable random buy amounts
-DISTRIBUTION_AMOUNT=0.01     # Amount of SOL to distribute to each wallet
-BUY_AMOUNT=0.01              # Fixed buy amount
-BUY_UPPER_AMOUNT=0.002       # Upper limit for random buy amount
-BUY_LOWER_AMOUNT=0.001       # Lower limit for random buy amount
+### Environment Configuration
 
-BUY_INTERVAL_MAX=2000        # Maximum interval between buys in milliseconds
-BUY_INTERVAL_MIN=4000        # Minimum interval between buys in milliseconds
+Rename the `.env.copy` file to `.env` and configure:
+- RPC and WSS endpoints
+- Main wallet's secret key
+- Jito auth keypair (if using)
 
-CHECK_BAL_INTERVAL=3000      # Interval to check wallet balances in milliseconds
-DISTRIBUTE_WALLET_NUM=8      # Number of wallets to distribute SOL to
+## Version Comparison
 
-SWAP_ROUTING=true            # Enable swap routing
+| Feature | Version 1 | Version 2 | Version 3 |
+|---------|-----------|-----------|-----------|
+| Wallet Handling | Fixed wallets with repetitive actions | Dynamic wallet creation | Advanced wallet rotation |
+| Transaction Speed | Standard | Enhanced | 20 tx/second (500 tx/minute) |
+| Maker Numbers | Limited | Increased | Maximized |
+| Buy/Sell Ratio | Equal | More buys than sells | Optimized for market conditions |
+| SOL Gathering | Collects tokens | Sells tokens first, then gathers SOL | Advanced management |
+| Privacy | Detectable patterns | Improved obfuscation | No repeated makers |
+| Throughput | Limited | Higher | 1M+ volume per hour possible |
 
-###### FOR MASSIVE BUY #####
-WALLET_NUM=8                 # Number of wallets for massive buy operations
+## Version 2 Improvements
 
-########## FOR SELL MODE ##########
-SELL_ALL_BY_TIMES=20         # Number of times to sell all tokens in sub-wallets gradually
-SELL_PERCENT=100             # Percentage of tokens to sell from the main wallet
+| Issue in Version 1 | Solution in Version 2 |
+|-------------------|---------------------|
+| ❌ **Repetitive wallet usage** | ✅ **Dynamic wallet creation** - Transfers to new wallets after operations |
+| ❌ **Limited maker count** | ✅ **Automatic maker increase** - New wallets for each round |
+| ❌ **Inefficient token gathering** | ✅ **Smart gathering** - Sells tokens first, reclaims rent (0.00203 SOL) |
+| ❌ **Equal buy/sell ratio** | ✅ **Buy pressure emphasis** - Random double buys before selling |
 
-#### TOKEN PAIR SETTING ####
-TOKEN_MINT=6VbEGuqwhjdgV9NxhMhvRkrFqXVNk53CvD7hK3C3yQS9  # Token mint address
-POOL_ID=null                  # Pool ID for the token pair
+## Version 3 Capabilities
 
-TX_FEE=10                    # Transaction fee
-ADDITIONAL_FEE=0.006         # Additional fee (should be larger than 0.006 SOL)
-JITO_KEY=                    # Jito key
-JITO_FEE=                    # Jito fee
-BLOCKENGINE_URL=ny.mainnet.block-engine.jito.wtf  # Block engine URL
+Version 3 delivers extreme performance with:
+- 500 transactions per minute 
+- 20 transactions per second
+- No repeated maker patterns
+- Potential for millions in volume per hour
 
-###### GENERAL SETTING ######
-LOG_LEVEL=info               # Logging level (info, debug, error)
-```
--->
+### Live Example
 
-## Usage
-1. Clone the repository
-```
-git clone https://github.com/crypto-artisan/solana-volume-bot-v1.git
-cd solana-volume-bot-v1
-```
-2. Install dependencies
-```
-npm install
-```
-3. Configure the environment variables
+View Version 3 in action: [DexScreener Example](https://dexscreener.com/solana/boisf5dnefrbsodmiupkpauglaggx9gdjl1csgmcjqnn)
 
-Rename the .env.copy file to .env and set RPC and WSS, main wallet's secret key, and jito auth keypair.
+---
 
-4. Run the bot
+For access to Version 2 or 3 (private repositories), please contact me via Telegram.
 
-```
-npm run start
-```
+## Contact
 
-# Version 2 is developed and it is private repository.
-### What is the main difference between the former volume booster and the updated one?
-
-## 🚀 Last Version's Drawbacks and Improvements
-- ❌ **Repetitive buy and sell with one wallet**: The last version of the Raydium Volume Bot used fixed wallets, so it was apparent on DexScreener that some wallets performed repetitive buy and sell actions.
-- ✅ **Transferring SOL to new wallet**: After buying and selling in one wallet, it transfers SOL to a newly created wallet and continues buying and selling there.
-- ❌ **No increase in the number of makers**: It didn't increase the number of pool makers, only the volume.
-- ✅ **Maker increase**: New wallets are created every round of buying and selling, increasing the number of makers.
-- ❌ **Gathering token instead of SOL**: When gathering, if there were tokens left, it didn't sell them before gathering. Instead, it just gathered tokens to the main wallet.
-- ✅ **Sell before gather**: When gathering, if there are tokens left in the wallet, it sells the tokens first and gathers only SOL (the token account rent of 0.00203 SOL is reclaimed).
-- ❌ **Equal number of buys and sells**: One-time buy and one-time sell actions left sell pressure at the end, as there was always a sell at the end of the volume operation.
-- ✅ **More buys than sells**: It randomly buys twice with SOL in the wallet and sells all tokens after some time, making the number of buys twice as many as sells, thus creating more buy pressure.
-
-# Version 3 is also developed.
-### Version 3 is designed for the massive transactions in a very short time.
-So, it is making 500 transactions in a minute.
-You can see my volume bot version3 working in here.
-
-https://dexscreener.com/solana/boisf5dnefrbsodmiupkpauglaggx9gdjl1csgmcjqnn
-
-There is no repeated makers and it is making 20 transactions a second.
-
-If you increase the volume of each transaction, 1 million in an hour is a piece of cake.
-How wonderful it is.
-I am proud of my version3.
-If you need it, you can contact me.
-
+- [Telegram](https://t.me/JohnDAT0218)
+- [Github](https://github.com/crypto-artisan)
